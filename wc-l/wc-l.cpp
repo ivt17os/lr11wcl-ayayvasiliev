@@ -18,7 +18,7 @@ int main(int argc, char** argv ) {
     //    cerr << "Error: need text file\n";
     //    return 1;
     //}
-	
+
 	cout << "Opening file a.txt\n"; // << argv[1] << "\n";
 	
 	ifstream f("a.txt");
@@ -27,9 +27,18 @@ int main(int argc, char** argv ) {
 
 
 	QueryPerformanceCounter((LARGE_INTEGER *)&t1);// смотрим время после окончания цикла
-	getline(f, str);
-	QueryPerformanceCounter((LARGE_INTEGER *)&t2);// смотрим время после окончания цикла
+	
+    int numOfLines = 0;
+    do {
+        getline(f, str);
+        numOfLines++;
+    } while (!f.eof());
+    
+    QueryPerformanceCounter((LARGE_INTEGER *)&t2);// смотрим время после окончания цикла
 
-	cout << str << "\n Time spent:" << (t2-t1)/(1.*freq);
+
+    cout.precision(3);
+    cout << "Time: " << fixed << (t2-t1)/(1.*freq) << "sec" << endl;
+    cout << "File a.txt has " << numOfLines << " lines." << endl;
 	return 0;
 }
