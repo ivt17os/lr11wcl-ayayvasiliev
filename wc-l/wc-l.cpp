@@ -1,11 +1,8 @@
 #define _CRT_SECURE_NO_WARNINGS
-#include <cstdio>
+
 #include <iostream>
-#include <string>
-#include <stdio.h>
 #include <iomanip> 
 #include <windows.h>
-#include <fstream>
 
 using namespace std;
 
@@ -19,9 +16,9 @@ int main(int argc, char** argv ) {
     //    return 1;
     //}
 
-	cout << "Opening file a.txt\n"; // << argv[1] << "\n";
+	cout << "Opening file b.txt\n"; // << argv[1] << "\n";
 	
-	FILE* f = fopen("a.txt", "rb");
+	FILE* f = fopen("b.txt", "rb");
 	
     QueryPerformanceFrequency((LARGE_INTEGER *)&freq);// запрашиваем число тиков в 1 сек
 
@@ -42,6 +39,6 @@ int main(int argc, char** argv ) {
 
     cout.precision(3);
     cout << "Time: " << fixed << (t2-t1)/(1.*freq) << "sec" << endl;
-    cout << "File a.txt has " << numOfLines << " lines." << endl;
+    cout << "File b.txt has " << numOfLines << " lines." << endl;
 	return 0;
 }
